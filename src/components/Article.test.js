@@ -7,6 +7,15 @@ import MutationObserver from 'mutationobserver-shim';
 import Article from './Article';
 
 test('renders component without errors', ()=> {
+
+  const { rerender } = render(<Article article={[]}/>)
+  let articleObjects = screen.queryAllByTestId('article')
+  expect(articleObjects).toHaveLength(0)
+
+  rerender(<Article articles={Article} />)
+  articleObjects = screen.queryAllByTestId('article')
+  expect(articleObjects).toHaveLength(2)
+  
 });
 
 // test('renders headline, author from the article when passed in through props', ()=> {
